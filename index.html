@@ -52,7 +52,7 @@ body{
 }
 .strip{
   height:3px;
-  background:linear-gradient(90deg,#3ee0ff,#e13bff,#baff2e,#f5c518);
+  background:linear-gradient(90deg,#3ee0ff,#e13bff,#ff8a3d,#baff2e,#f5c518);
 }
 .apps{
   padding:28px 16px 20px;
@@ -77,6 +77,10 @@ body{
 .card .name{
   font-weight:900;font-size:15px;letter-spacing:0.3px;
   color:var(--c);
+}
+.card .name.neon{
+  background:linear-gradient(110deg,#22d3ee,#818cf8 35%,#e879f9 65%,#ffb627);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .card .desc{
   font-size:11.5px;color:rgba(238,242,251,0.5);
@@ -104,7 +108,7 @@ footer{
 <div class="hero">
   <div class="hero-tag">少年サッカー サポートアプリ集</div>
   <div class="hero-h1">MATCH<em>KIT</em></div>
-  <p class="hero-desc">動画編集・フォームチェック・作戦ボード。<br>iPhoneで無料で使える4つのツール。</p>
+  <p class="hero-desc">動画編集・フォームチェック・作戦ボード。<br>iPhoneで無料で使える5つのツール。</p>
 </div>
 <div class="strip"></div>
 
@@ -124,6 +128,15 @@ footer{
     <div class="body">
       <div class="name">MATCHCUT+</div>
       <div class="desc">AI名場面検出つき・成長の記録も</div>
+    </div>
+    <span class="arrow">&#8250;</span>
+  </a>
+
+  <a class="card" style="--c:#ff8a3d" href="https://satoshiatr-blip.github.io/golazo/promo.html">
+    <img src="icon-golazo.png" alt="">
+    <div class="body">
+      <div class="name neon">GOLAZO</div>
+      <div class="desc">ワンシーンにポスター風の幕開けと締めを</div>
     </div>
     <span class="arrow">&#8250;</span>
   </a>
