@@ -124,6 +124,8 @@ footer{
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .foot-note{font-size:10.5px;color:rgba(238,242,251,0.3);line-height:1.8;}
+/* 日本語を単語の途中で折らない（改行は助詞・読点の後ろだけ。印はページ末尾のスクリプトで付ける） */
+body{word-break:keep-all;overflow-wrap:anywhere;line-break:strict;}
 </style>
 </head>
 <body>
@@ -194,5 +196,13 @@ footer{
   <p class="foot-note">気になるアプリをタップすると、それぞれの紹介ページに移動します。</p>
 </footer>
 
+<script>
+// 助詞・読点の後ろに改行できる印（ゼロ幅スペース）を入れる。続く文字がひらがなのとき（「できます」の「で」など）と「その」「この」の後ろには入れない
+(function(){
+  var re=/((?:[はがをにでともへや、。」）]|(?<![そこあど])の))(?=[^ぁ-ゟ、。」）！？!?\s])/g;
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;
+  while((n=w.nextNode())){ if(/[぀-鿿]/.test(n.data)&&!/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) n.data=n.data.replace(re,'$1​'); }
+})();
+</script>
 </body>
 </html>
