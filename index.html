@@ -78,9 +78,20 @@ body{
   font-weight:900;font-size:15px;letter-spacing:0.3px;
   color:var(--c);
 }
+/* GOLAZO：アイコンのネオン配色。文字の幅だけにグラデーションをかける */
 .card .name.neon{
+  display:inline-block;
   background:linear-gradient(110deg,#22d3ee,#818cf8 35%,#e879f9 65%,#ffb627);
   -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.card.neon-card{position:relative;}
+.card.neon-card::before{
+  content:"";position:absolute;left:-3px;top:-1px;right:-1px;bottom:-1px;
+  border-radius:14px;border-left:3px solid transparent;pointer-events:none;
+  background:linear-gradient(180deg,#22d3ee,#a855f7 50%,#ff8a3d) border-box;
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) padding-box exclude,linear-gradient(#000 0 0);
 }
 .card .desc{
   font-size:11.5px;color:rgba(238,242,251,0.5);
@@ -132,7 +143,7 @@ footer{
     <span class="arrow">&#8250;</span>
   </a>
 
-  <a class="card" style="--c:#ff8a3d" href="https://satoshiatr-blip.github.io/golazo/promo.html">
+  <a class="card neon-card" style="--c:transparent" href="https://satoshiatr-blip.github.io/golazo/promo.html">
     <img src="icon-golazo.png" alt="">
     <div class="body">
       <div class="name neon">GOLAZO</div>
