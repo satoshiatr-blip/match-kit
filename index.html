@@ -103,13 +103,23 @@ body{
 footer{
   padding:36px 20px 48px;text-align:center;
 }
-.chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+.chips{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  max-width:340px;margin:0 auto 18px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;overflow:hidden;
+}
 .chip{
-  font-size:10px;font-weight:700;letter-spacing:0.5px;
-  padding:5px 11px;border-radius:100px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  color:rgba(238,242,251,0.4);
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:12px 8px;background:#05060a;
+  font-size:11px;font-weight:700;letter-spacing:0.3px;
+  color:rgba(238,242,251,0.6);
+}
+.chip i{
+  font-style:normal;font-size:12px;
+  background:linear-gradient(110deg,#22d3ee,#e879f9 60%,#ffb627);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .foot-note{font-size:10.5px;color:rgba(238,242,251,0.3);line-height:1.8;}
 </style>
@@ -174,10 +184,10 @@ footer{
 
 <footer>
   <div class="chips">
-    <span class="chip">&#10003; 全て無料</span>
-    <span class="chip">&#10003; インストール不要</span>
-    <span class="chip">&#10003; iPhone対応</span>
-    <span class="chip">&#10003; データは端末内のみ</span>
+    <span class="chip"><i>&#10003;</i>全て無料</span>
+    <span class="chip"><i>&#10003;</i>インストール不要</span>
+    <span class="chip"><i>&#10003;</i>iPhone対応</span>
+    <span class="chip"><i>&#10003;</i>データは端末内のみ</span>
   </div>
   <p class="foot-note">気になるアプリをタップすると、それぞれの紹介ページに移動します。</p>
 </footer>
