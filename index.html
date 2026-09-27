@@ -22,7 +22,9 @@ body{
 }
 .hero{
   padding:max(18px,env(safe-area-inset-top)) 20px 14px;
-  text-align:center;flex-shrink:0;
+  text-align:center;
+  /* 縦に長い画面では見出しが余った高さを受け持ち、一覧と下の注記はまとまったまま下に置く */
+  flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;align-items:center;
   background:
     radial-gradient(circle at 20% 0%, rgba(62,224,255,0.10) 0%, transparent 45%),
     radial-gradient(circle at 80% 10%, rgba(225,59,255,0.10) 0%, transparent 45%),
@@ -57,9 +59,9 @@ body{
   background:linear-gradient(90deg,#3ee0ff,#e13bff,#ff8a3d,#baff2e,#f5c518);
 }
 .apps{
-  flex:1;
+  flex:none;
   padding:12px 14px 8px;
-  display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:10px;
+  display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:10px;
 }
 .card{
   display:flex;flex-direction:column;justify-content:center;gap:6px;
