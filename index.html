@@ -2,267 +2,137 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05060a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
 <link rel="icon" href="icon-hub.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>MATCH KIT — 少年サッカー サポートアプリ集</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-  background:#05060a;
-  color:#eef2fb;
-  font-family:'Noto Sans JP',sans-serif;
-  max-width:520px;
-  margin:0 auto;
-  /* 1画面に収める：一覧が残りの高さを分け合う（画面が低すぎる端末では重ならずに少しだけスクロール） */
-  min-height:100svh;
-  display:flex;flex-direction:column;
-}
-.hero{
-  position:relative;overflow:hidden;isolation:isolate;
-  padding:max(18px,env(safe-area-inset-top)) 20px 14px;
-  text-align:center;
-  /* 縦に長い画面では見出しが余った高さを受け持ち、一覧と下の注記はまとまったまま下に置く */
-  flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;align-items:center;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(62,224,255,0.10) 0%, transparent 45%),
-    radial-gradient(circle at 80% 10%, rgba(225,59,255,0.10) 0%, transparent 45%),
-    radial-gradient(circle at 50% 30%, rgba(0,212,255,0.06) 0%, transparent 55%);
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-.hero-bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;opacity:0.32;filter:saturate(1.25) contrast(1.1);}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:
-    repeating-linear-gradient(0deg,rgba(0,0,0,0.22) 0 1px,transparent 1px 3px),
-    radial-gradient(ellipse 90% 70% at 50% 45%,rgba(5,6,10,0.35) 0%,rgba(5,6,10,0.85) 70%,#05060a 100%);}
-.streak{position:absolute;z-index:-1;top:-30%;left:-60%;width:40%;height:160%;pointer-events:none;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.0) 30%,rgba(255,255,255,0.22) 50%,rgba(255,255,255,0.0) 70%,transparent);
-  transform:rotate(18deg);mix-blend-mode:screen;animation:streak 5.5s cubic-bezier(.6,0,.2,1) infinite;}
-.streak.s2{width:18%;animation-delay:1.6s;background:linear-gradient(90deg,transparent,rgba(62,224,255,0.35),transparent);}
-.streak.s3{width:12%;animation-delay:3.4s;background:linear-gradient(90deg,transparent,rgba(225,59,255,0.35),transparent);}
-@keyframes streak{0%{left:-60%}35%,100%{left:140%}}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:10px;font-weight:700;letter-spacing:3px;
-  color:#9aa8c4;
-  border:1px solid rgba(255,255,255,0.14);
-  padding:6px 14px;border-radius:100px;
-  margin-bottom:12px;
-  text-transform:uppercase;
-}
-.hero-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:64px;letter-spacing:5px;line-height:0.95;
-  margin-bottom:10px;position:relative;
-}
-.hero-h1 .m{display:inline-block;animation:slam .7s cubic-bezier(.2,.9,.2,1.2) both .55s, glitch 6s steps(1) infinite 2.5s;}
-.hero-h1 em{
-  font-style:normal;display:inline-block;
-  background:linear-gradient(90deg,#3ee0ff,#e13bff,#ff8a3d,#f5c518,#3ee0ff);background-size:300% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 14px rgba(225,59,255,0.45));
-  animation:slamR .7s cubic-bezier(.2,.9,.2,1.2) both .7s, flow 6s linear infinite;
-}
-@keyframes slam{0%{opacity:0;transform:translateX(-60px) skewX(-18deg);filter:blur(6px)}60%{opacity:1;filter:blur(0)}100%{transform:none}}
-@keyframes slamR{0%{opacity:0;transform:translateX(60px) skewX(-18deg) scale(1.3)}60%{opacity:1}100%{transform:none}}
+:root{--ink:#0b0b0c;--paper:#f2f0eb;--mute:rgba(242,240,235,0.5);--line:rgba(242,240,235,0.16);}
+html{background:var(--ink);}
+body{background:var(--ink);color:var(--paper);font-family:'Noto Sans JP',sans-serif;max-width:520px;margin:0 auto;
+  min-height:100svh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+
+.cover{position:relative;flex:1 0 auto;min-height:330px;overflow:hidden;isolation:isolate;
+  padding:max(14px,env(safe-area-inset-top)) 18px 16px;display:flex;flex-direction:column;}
+.cover video{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.25) brightness(0.6);transform:scale(1.08);animation:drift 18s ease-in-out infinite alternate;}
+@keyframes drift{to{transform:scale(1.16) translateY(-2%)}}
+.cover::before{content:"";position:absolute;inset:-50%;z-index:-1;pointer-events:none;opacity:0.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .9s steps(4) infinite;}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-4%,3%)}50%{transform:translate(3%,-4%)}75%{transform:translate(-2%,-2%)}}
+.cover::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,11,12,0.55) 0%,transparent 28%,transparent 55%,var(--ink) 100%);}
+.tint{position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--a,#888);mix-blend-mode:color;opacity:0.55;transition:background .6s ease;}
+.masthead{display:flex;justify-content:space-between;align-items:center;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--line);animation:fade .8s ease both .2s;}
+.masthead b{font-weight:400;opacity:0.6;}
+.title{margin-top:auto;position:relative;}
+.title h1{font-family:'Bebas Neue',sans-serif;font-weight:400;line-height:0.8;letter-spacing:-1px;font-size:clamp(108px,34vw,172px);}
+.title h1 span{display:block;overflow:hidden;}
+.title h1 span i{display:block;font-style:normal;animation:up 1.1s cubic-bezier(.16,1,.3,1) both;}
+.title h1 span:nth-child(2) i{animation-delay:.12s;}
+.title h1 span:nth-child(2) i{background:linear-gradient(90deg,#3ee0ff,#e13bff,#ff8a3d,#f5c518,#3ee0ff);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:up 1.1s cubic-bezier(.16,1,.3,1) both .12s, flow 8s linear infinite;}
 @keyframes flow{to{background-position:300% 0}}
-@keyframes glitch{0%,100%{text-shadow:none;transform:none}
-  92%{text-shadow:-3px 0 #3ee0ff,3px 0 #e13bff;transform:translateX(2px)}
-  94%{text-shadow:3px 0 #3ee0ff,-3px 0 #e13bff;transform:translateX(-2px) skewX(-6deg)}
-  96%{text-shadow:none;transform:none}}
-.hero-tag,.hero-desc{animation:rise .6s ease both}
-.hero-desc{text-shadow:0 1px 8px rgba(0,0,0,0.9);color:rgba(238,242,251,0.72)!important;}
-.hero-tag{background:rgba(5,6,10,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
-.hero-h1{text-shadow:0 2px 24px rgba(0,0,0,0.6);}
-.hero-tag{animation-delay:.35s}
-.hero-desc{animation-delay:1.05s}
-@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.hero-desc{
-  font-size:12px;color:rgba(238,242,251,0.55);line-height:1.7;
-  max-width:340px;margin:0 auto;
+.strip{height:2px;background:linear-gradient(90deg,#3ee0ff,#e13bff,#ff8a3d,#baff2e,#f5c518,#3ee0ff);background-size:200% 100%;
+  box-shadow:0 0 14px rgba(225,59,255,0.45);animation:flow 5s linear infinite;}
+@keyframes up{from{transform:translateY(105%)}to{transform:none}}
+.tate{position:absolute;right:2px;bottom:6px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:6px;line-height:1.9;
+  animation:fade 1.2s ease both .9s;}
+.lede{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:14px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:11px;line-height:1.75;color:var(--mute);animation:fade 1s ease both 1.1s;}
+.lede span:last-child{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-align:right;white-space:nowrap;}
+
+.index{list-style:none;padding:0 18px;background:linear-gradient(var(--line),var(--line)) top left/100% 1px no-repeat;
+  animation:rule 1.2s cubic-bezier(.7,0,.2,1) both 1s;}
+@keyframes rule{from{background-size:0 1px}}
+.row{border-bottom:1px solid var(--line);animation:fade .7s ease both;animation-delay:calc(1.2s + var(--i) * .08s);}
+.row a{position:relative;display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;padding:11px 2px;
+  text-decoration:none;color:inherit;isolation:isolate;overflow:hidden;transition:color .3s;}
+.row a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--c);transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.7,0,.2,1);}
+.row a:hover::before,.row a:active::before{transform:none;}
+.row a:hover,.row a:active{color:var(--ink);}
+.no{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;opacity:0.5;transition:opacity .4s,color .4s;}
+.row a::after{content:"";position:absolute;left:0;top:22%;bottom:22%;width:2px;background:var(--t);transform:scaleY(0);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.row.on a::after{transform:none;}
+.row.on .no{opacity:1;color:var(--t);}
+.row.on .go img{box-shadow:0 0 14px var(--t);}
+.row.on .nm{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--t) 60%,transparent));}
+.row.on .go img{filter:none;opacity:1;}
+.row .nm{transition:color .4s;}
+.row a:hover .nm,.row a:active .nm{color:var(--ink);-webkit-text-fill-color:var(--ink);}
+.row a:hover .d,.row a:active .d{color:var(--ink);-webkit-text-fill-color:var(--ink);}
+.nm{font-family:'Bebas Neue',sans-serif;font-size:25px;letter-spacing:1.5px;line-height:1;color:var(--t);}
+.nm .d{color:var(--paper);}
+.row.golazo .nm{background:linear-gradient(110deg,#22d3ee,#818cf8 35%,#e879f9 65%,#ffb627);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.row.golazo .nm .d{-webkit-text-fill-color:var(--paper);}
+.d{display:block;font-family:'Noto Sans JP',sans-serif;font-size:10.5px;letter-spacing:0;opacity:0.55;margin-top:3px;}
+.go{display:flex;align-items:center;gap:10px;}
+.go img{width:26px;height:26px;border-radius:7px;transition:box-shadow .4s;}
+.row a:hover .go img,.row a:active .go img{filter:none;opacity:1;}
+.go svg{width:16px;height:16px;stroke:currentColor;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+.row a:hover .go svg{transform:translateX(4px);}
+footer{padding:12px 18px max(14px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:12px;align-items:flex-end;animation:fade 1s ease both 1.8s;}
+.tags b{font-weight:400;background:linear-gradient(110deg,#22d3ee,#e879f9 60%,#ffb627);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.tags{white-space:nowrap;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;line-height:1.9;color:var(--mute);text-transform:uppercase;}
+.note{font-size:10px;line-height:1.7;color:rgba(242,240,235,0.32);text-align:right;max-width:200px;}
+@keyframes fade{from{opacity:0}}
+/* 画面の低い端末（iPhone SE など）でも1画面に収める */
+@media (max-height:740px){
+  .cover{min-height:0;padding-bottom:10px;}
+  .title h1{font-size:min(30vw,14svh);}
+  .tate{font-size:13px;letter-spacing:4px;}
+  .lede{margin-top:8px;padding-top:7px;font-size:10.5px;line-height:1.6;}
+  .row a{padding:7px 2px;}
+  .nm{font-size:21px;}
+  .d{font-size:10px;margin-top:2px;}
+  .go img{width:22px;height:22px;}
+  footer{padding-top:8px;}
 }
-.strip{
-  height:3px;
-  background:linear-gradient(90deg,#3ee0ff,#e13bff,#ff8a3d,#baff2e,#f5c518,#3ee0ff);background-size:200% 100%;
-  box-shadow:0 0 18px rgba(225,59,255,0.5);
-  animation:flow 4s linear infinite, grow .8s cubic-bezier(.7,0,.2,1) both 1s;transform-origin:left;
-}
-@keyframes grow{from{transform:scaleX(0)}to{transform:none}}
-.apps{
-  flex:none;
-  padding:12px 14px 8px;
-  display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:10px;
-}
-.card{
-  position:relative;
-  background-image:linear-gradient(100deg,transparent 42%,rgba(255,255,255,0.09) 50%,transparent 58%);
-  background-size:300% 100%;background-repeat:no-repeat;background-position:150% 0;
-  animation:pop .55s cubic-bezier(.2,.9,.25,1.15) backwards calc(1.2s + var(--i) * 0.09s), shine 7s ease-in-out infinite calc(2.4s + var(--i) * 0.35s);
-  display:flex;flex-direction:column;justify-content:center;gap:6px;
-  padding:10px 10px 10px 13px;
-  background-color:rgba(255,255,255,0.025);
-  border:1px solid rgba(255,255,255,0.08);
-  border-left:3px solid var(--c);
-  border-radius:14px;
-  text-decoration:none;color:inherit;
-  transition:background 0.15s ease, transform 0.15s ease;
-}
-.card:active{background:rgba(255,255,255,0.06);transform:scale(0.97);}
-@keyframes pop{0%{opacity:0;transform:translateY(18px) scale(.92);filter:brightness(3)}60%{opacity:1;filter:brightness(1.4)}100%{transform:none;filter:none}}
-@keyframes shine{0%{background-position:150% 0}18%,100%{background-position:-50% 0}}
-.card img{animation:glow 3.2s ease-in-out infinite;animation-delay:calc(var(--i) * 0.4s);}
-@keyframes glow{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.4)}50%{box-shadow:0 0 18px color-mix(in srgb,var(--g) 55%,transparent),0 4px 16px rgba(0,0,0,0.4)}}
-.card img{
-  width:34px;height:34px;border-radius:9px;flex-shrink:0;
-  box-shadow:0 4px 16px rgba(0,0,0,0.4);
-}
-.card .body{min-width:0;}
-.card .name{
-  font-weight:900;font-size:13.5px;letter-spacing:0.2px;white-space:nowrap;
-  color:var(--c);
-}
-/* GOLAZO：アイコンのネオン配色。文字の幅だけにグラデーションをかける */
-.card .name.neon{
-  display:inline-block;
-  background:linear-gradient(110deg,#22d3ee,#818cf8 35%,#e879f9 65%,#ffb627);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.card.neon-card{position:relative;}
-.card.neon-card::before{
-  content:"";position:absolute;left:-3px;top:-1px;right:-1px;bottom:-1px;
-  border-radius:14px;border-left:3px solid transparent;pointer-events:none;
-  background:linear-gradient(180deg,#22d3ee,#a855f7 50%,#ff8a3d) border-box;
-  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) padding-box exclude,linear-gradient(#000 0 0);
-}
-.card .desc{
-  font-size:11px;color:rgba(238,242,251,0.5);
-  margin-top:2px;line-height:1.45;
-}
-/* 2列ではカード全体が押せる場所なので矢印は出さない */
-.card .arrow{display:none;
-  font-size:20px;color:rgba(238,242,251,0.25);flex-shrink:0;
-}
-footer{
-  padding:6px 14px max(14px,env(safe-area-inset-bottom));text-align:center;flex-shrink:0;
-}
-.chips{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:2px 12px;
-  margin:0 auto 4px;
-}
-/* 各列の中で左寄せにして、チェックマークを縦にそろえる */
-.chip{
-  display:flex;align-items:center;gap:6px;
-  padding:2px 0;
-  /* 文字はアプリ一覧の説明文と同じ色・太さ */
-  font-size:10px;font-weight:400;letter-spacing:0;white-space:nowrap;
-  color:rgba(238,242,251,0.5);
-}
-.chip i{
-  font-style:normal;font-size:12px;
-  background:linear-gradient(110deg,#22d3ee,#e879f9 60%,#ffb627);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.foot-note{font-size:10.5px;color:rgba(238,242,251,0.3);line-height:1.8;}
-.flash{position:fixed;inset:0;z-index:100;pointer-events:none;background:#fff;animation:flash .9s ease-out both;}
-.flash::after{content:"";position:absolute;inset:0;background:#05060a;animation:flashb .9s ease-out both;}
-@keyframes flash{0%{opacity:1}100%{opacity:0;visibility:hidden}}
-@keyframes flashb{0%,25%{opacity:1}26%{opacity:0}}
-footer{animation:rise .6s ease both 1.9s;}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.streak,.flash{display:none}}
-/* 日本語を単語の途中で折らない（改行は助詞・読点の後ろだけ。印はページ末尾のスクリプトで付ける） */
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 body{word-break:keep-all;overflow-wrap:anywhere;line-break:strict;}
 </style>
 </head>
 <body>
-
-<div class="flash" aria-hidden="true"></div>
-<div class="hero">
-  <video class="hero-bg" src="hero-loop.mp4" poster="hero-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
-  <span class="streak"></span><span class="streak s2"></span><span class="streak s3"></span>
-  <div class="hero-tag">少年サッカー サポートアプリ集</div>
-  <div class="hero-h1"><span class="m">MATCH</span><em>KIT</em></div>
-  <p class="hero-desc">動画編集・フォームチェック・作戦ボード。<br>iPhoneで無料で使える6つのツール。</p>
-</div>
-<div class="strip"></div>
-
-<div class="apps">
-
-  <a class="card" style="--c:#3ee0ff;--g:#3ee0ff;--i:0" href="https://satoshiatr-blip.github.io/matchcut/promo.html">
-    <img src="icon-matchcut.png" alt="">
-    <div class="body">
-      <div class="name">MATCHCUT</div>
-      <div class="desc">試合動画をハイライトに編集</div>
-    </div>
-    <span class="arrow">&#8250;</span>
-  </a>
-
-  <a class="card" style="--c:#e13bff;--g:#e13bff;--i:1" href="https://satoshiatr-blip.github.io/matchcut-ai/promo.html">
-    <img src="icon-matchcutplus.png" alt="">
-    <div class="body">
-      <div class="name">MATCHCUT+</div>
-      <div class="desc">見せ場の自動提案・<br>成長の記録も</div>
-    </div>
-    <span class="arrow">&#8250;</span>
-  </a>
-
-  <a class="card neon-card" style="--c:transparent;--g:#a855f7;--i:2" href="https://satoshiatr-blip.github.io/golazo/promo.html">
-    <img src="icon-golazo.png" alt="">
-    <div class="body">
-      <div class="name neon">GOLAZO</div>
-      <div class="desc">一瞬の見せ場を、特別な一本に</div>
-    </div>
-    <span class="arrow">&#8250;</span>
-  </a>
-
-  <a class="card" style="--c:#baff2e;--g:#baff2e;--i:3" href="https://satoshiatr-blip.github.io/form-check/promo.html">
-    <img src="icon-formcheck.png" alt="">
-    <div class="body">
-      <div class="name">FORM CHECK</div>
-      <div class="desc">2つの動画を並べてフォーム比較</div>
-    </div>
-    <span class="arrow">&#8250;</span>
-  </a>
-
-  <a class="card" style="--c:#f5c518;--g:#f5c518;--i:4" href="https://satoshiatr-blip.github.io/soccer-tactics/promo.html">
-    <img src="icon-tactics.png" alt="">
-    <div class="body">
-      <div class="name">TACTICS BOARD</div>
-      <div class="desc">フリーハンドで作戦を描いて共有</div>
-    </div>
-    <span class="arrow">&#8250;</span>
-  </a>
-
-  <a class="card" style="--c:#ff8a1f;--g:#ff8a1f;--i:5" href="https://satoshiatr-blip.github.io/replay-board/promo.html">
-    <img src="icon-replay.png" alt="">
-    <div class="body">
-      <div class="name">REPLAY BOARD</div>
-      <div class="desc">試合の動きを作戦ボードで振り返る</div>
-    </div>
-    <span class="arrow">&#8250;</span>
-  </a>
-
-</div>
-
-<footer>
-  <div class="chips">
-    <span class="chip"><i>&#10003;</i>すべて無料</span>
-    <span class="chip"><i>&#10003;</i>インストール不要</span>
-    <span class="chip"><i>&#10003;</i>iPhone対応</span>
-    <span class="chip"><i>&#10003;</i>データは端末内のみ</span>
+<header class="cover">
+  <video id="bg" src="hero-sync.mp4" poster="hero-sync.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="tint" aria-hidden="true"></div>
+  <div class="masthead"><span>Match Kit</span><b>Junior Football Tools</b><span>Vol.06</span></div>
+  <div class="title">
+    <h1><span><i>MATCH</i></span><span><i>KIT</i></span></h1>
+    <p class="tate">少年サッカーの、<br>六つの道具。</p>
   </div>
-  <p class="foot-note">気になるアプリをタップすると、それぞれの紹介ページに移動します。</p>
+  <p class="lede"><span>動画編集・フォームチェック・作戦ボード。<br>iPhoneで無料で使える6つのツール。</span><span>Free<br>No install</span></p>
+</header>
+<div class="strip" aria-hidden="true"></div>
+<ol class="index">
+  <li class="row" style="--c:#3ee0ff;--t:#3ee0ff;--i:0"><a href="https://satoshiatr-blip.github.io/matchcut/promo.html"><span class="no">01</span><span class="nm">MATCHCUT<span class="d">試合動画をハイライトに編集</span></span><span class="go"><img src="icon-matchcut.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+  <li class="row" style="--c:#e13bff;--t:#e13bff;--i:1"><a href="https://satoshiatr-blip.github.io/matchcut-ai/promo.html"><span class="no">02</span><span class="nm">MATCHCUT+<span class="d">見せ場の自動提案・成長の記録も</span></span><span class="go"><img src="icon-matchcutplus.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+  <li class="row golazo" style="--c:linear-gradient(110deg,#22d3ee,#a855f7 50%,#ffb627);--t:#c084fc;--i:2"><a href="https://satoshiatr-blip.github.io/golazo/promo.html"><span class="no">03</span><span class="nm">GOLAZO<span class="d">一瞬の見せ場を、特別な一本に</span></span><span class="go"><img src="icon-golazo.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+  <li class="row" style="--c:#baff2e;--t:#baff2e;--i:3"><a href="https://satoshiatr-blip.github.io/form-check/promo.html"><span class="no">04</span><span class="nm">FORM CHECK<span class="d">2つの動画を並べてフォーム比較</span></span><span class="go"><img src="icon-formcheck.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+  <li class="row" style="--c:#f5c518;--t:#f5c518;--i:4"><a href="https://satoshiatr-blip.github.io/soccer-tactics/promo.html"><span class="no">05</span><span class="nm">TACTICS BOARD<span class="d">フリーハンドで作戦を描いて共有</span></span><span class="go"><img src="icon-tactics.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+  <li class="row" style="--c:#ff8a1f;--t:#ff8a1f;--i:5"><a href="https://satoshiatr-blip.github.io/replay-board/promo.html"><span class="no">06</span><span class="nm">REPLAY BOARD<span class="d">試合の動きを作戦ボードで振り返る</span></span><span class="go"><img src="icon-replay.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+</ol>
+<footer>
+  <p class="tags">All free <b>·</b> No install<br>iPhone <b>·</b> Data stays on device</p>
+  <p class="note">タップで、<br>各アプリの紹介へ。</p>
 </footer>
-
 <script>
-// 助詞・読点の後ろに改行できる印（ゼロ幅スペース）を入れる。続く文字がひらがなのとき（「できます」の「で」など）と「その」「この」の後ろには入れない
+// 背景の映像は6アプリを一覧と同じ順に2.4秒ずつ流している。いま映っているアプリの行を光らせ、背景をその色に染める
 (function(){
-  var re=/((?:[はがをにでともへや、。」）]|(?<![そこあど])の))(?=[^ぁ-ゟ、。」）！？!?\s])/g;
-  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;
-  while((n=w.nextNode())){ if(/[぀-鿿]/.test(n.data)&&!/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) n.data=n.data.replace(re,'$1​'); }
+  var v=document.getElementById('bg'),rows=[].slice.call(document.querySelectorAll('.row')),cur=-1;
+  function tick(){
+    var i=Math.floor(v.currentTime/2.4)%rows.length;
+    if(i!==cur){cur=i;rows.forEach(function(r,k){r.classList.toggle('on',k===i)});
+      document.querySelector('.cover').style.setProperty('--a',getComputedStyle(rows[i]).getPropertyValue('--t'));}
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
