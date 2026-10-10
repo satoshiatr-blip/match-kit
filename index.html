@@ -69,8 +69,8 @@ body{background:var(--ink);color:var(--paper);font-family:'Noto Sans JP',sans-se
 .row a:hover .d,.row a:active .d{color:var(--ink);-webkit-text-fill-color:var(--ink);}
 .nm{font-family:'Bebas Neue',sans-serif;font-size:25px;letter-spacing:1.5px;line-height:1;color:var(--t);}
 .nm .d{color:var(--paper);}
-.row.golazo .nm{background:linear-gradient(110deg,#22d3ee,#818cf8 35%,#e879f9 65%,#ffb627);-webkit-background-clip:text;background-clip:text;color:transparent;}
-.row.golazo .nm .d{-webkit-text-fill-color:var(--paper);}
+.row.golazo .nm .g{display:inline-block;background:linear-gradient(110deg,#22d3ee,#818cf8 35%,#e879f9 65%,#ffb627);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.row.golazo a:hover .nm .g,.row.golazo a:active .nm .g{-webkit-text-fill-color:var(--ink);}
 .d{display:block;font-family:'Noto Sans JP',sans-serif;font-size:10.5px;letter-spacing:0;opacity:0.55;margin-top:3px;}
 .go{display:flex;align-items:center;gap:10px;}
 .go img{width:26px;height:26px;border-radius:7px;transition:box-shadow .4s;}
@@ -113,7 +113,7 @@ body{word-break:keep-all;overflow-wrap:anywhere;line-break:strict;}
 <ol class="index">
   <li class="row" style="--c:#3ee0ff;--t:#3ee0ff;--i:0"><a href="https://satoshiatr-blip.github.io/matchcut/promo.html"><span class="no">01</span><span class="nm">MATCHCUT<span class="d">試合動画をハイライトに編集</span></span><span class="go"><img src="icon-matchcut.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
   <li class="row" style="--c:#e13bff;--t:#e13bff;--i:1"><a href="https://satoshiatr-blip.github.io/matchcut-ai/promo.html"><span class="no">02</span><span class="nm">MATCHCUT+<span class="d">見せ場の自動提案・成長の記録も</span></span><span class="go"><img src="icon-matchcutplus.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
-  <li class="row golazo" style="--c:linear-gradient(110deg,#22d3ee,#a855f7 50%,#ffb627);--t:#c084fc;--i:2"><a href="https://satoshiatr-blip.github.io/golazo/promo.html"><span class="no">03</span><span class="nm">GOLAZO<span class="d">一瞬の見せ場を、特別な一本に</span></span><span class="go"><img src="icon-golazo.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
+  <li class="row golazo" style="--c:linear-gradient(110deg,#22d3ee,#a855f7 50%,#ffb627);--t:#c084fc;--i:2"><a href="https://satoshiatr-blip.github.io/golazo/promo.html"><span class="no">03</span><span class="nm"><span class="g">GOLAZO</span><span class="d">一瞬の見せ場を、特別な一本に</span></span><span class="go"><img src="icon-golazo.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
   <li class="row" style="--c:#baff2e;--t:#baff2e;--i:3"><a href="https://satoshiatr-blip.github.io/form-check/promo.html"><span class="no">04</span><span class="nm">FORM CHECK<span class="d">2つの動画を並べてフォーム比較</span></span><span class="go"><img src="icon-formcheck.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
   <li class="row" style="--c:#f5c518;--t:#f5c518;--i:4"><a href="https://satoshiatr-blip.github.io/soccer-tactics/promo.html"><span class="no">05</span><span class="nm">TACTICS BOARD<span class="d">フリーハンドで作戦を描いて共有</span></span><span class="go"><img src="icon-tactics.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
   <li class="row" style="--c:#ff8a1f;--t:#ff8a1f;--i:5"><a href="https://satoshiatr-blip.github.io/replay-board/promo.html"><span class="no">06</span><span class="nm">REPLAY BOARD<span class="d">試合の動きを作戦ボードで振り返る</span></span><span class="go"><img src="icon-replay.png" alt=""><svg viewBox="0 0 16 16" fill="none" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a></li>
