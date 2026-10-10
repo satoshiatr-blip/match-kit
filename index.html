@@ -7,6 +7,13 @@
 <link rel="icon" href="icon-hub.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>MATCH KIT — 少年サッカー サポートアプリ集</title>
+<meta name="description" content="動画編集・フォームチェック・作戦ボード。iPhoneで無料で使える、少年サッカーの6つのツール。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MATCH KIT — 少年サッカー サポートアプリ集">
+<meta property="og:description" content="動画編集・フォームチェック・作戦ボード。iPhoneで無料で使える、少年サッカーの6つのツール。">
+<meta property="og:url" content="https://satoshiatr-blip.github.io/match-kit/">
+<meta property="og:image" content="https://satoshiatr-blip.github.io/match-kit/og-matchkit.png">
+<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600&family=Space+Mono&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -42,15 +49,15 @@ body{background:var(--ink);color:var(--paper);font-family:'Noto Sans JP',sans-se
   box-shadow:0 0 14px rgba(225,59,255,0.45);animation:flow 5s linear infinite;}
 @keyframes up{from{transform:translateY(105%)}to{transform:none}}
 .tate{position:absolute;right:2px;bottom:6px;writing-mode:vertical-rl;font-family:'Shippori Mincho',serif;font-size:15px;letter-spacing:6px;line-height:1.9;
-  animation:fade 1.2s ease both .9s;}
+  animation:fade .8s ease both .4s;}
 .lede{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:14px;padding-top:10px;border-top:1px solid var(--line);
-  font-size:11px;line-height:1.75;color:var(--mute);animation:fade 1s ease both 1.1s;}
+  font-size:11px;line-height:1.75;color:var(--mute);animation:fade .6s ease both .2s;}
 .lede span:last-child{font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-align:right;white-space:nowrap;}
 
 .index{list-style:none;padding:0 18px;background:linear-gradient(var(--line),var(--line)) top left/100% 1px no-repeat;
-  animation:rule 1.2s cubic-bezier(.7,0,.2,1) both 1s;}
+  animation:rule .9s cubic-bezier(.7,0,.2,1) both .1s;}
 @keyframes rule{from{background-size:0 1px}}
-.row{border-bottom:1px solid var(--line);animation:fade .7s ease both;animation-delay:calc(1.2s + var(--i) * .08s);}
+.row{border-bottom:1px solid var(--line);animation:fade .4s ease both;animation-delay:calc(.05s + var(--i) * .04s);}
 .row a{position:relative;display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;padding:11px 2px;
   text-decoration:none;color:inherit;isolation:isolate;overflow:hidden;transition:color .3s;}
 .row a::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--c);transform:scaleX(0);transform-origin:left;
@@ -77,10 +84,10 @@ body{background:var(--ink);color:var(--paper);font-family:'Noto Sans JP',sans-se
 .row a:hover .go img,.row a:active .go img{filter:none;opacity:1;}
 .go svg{width:16px;height:16px;stroke:currentColor;transition:transform .4s cubic-bezier(.16,1,.3,1);}
 .row a:hover .go svg{transform:translateX(4px);}
-footer{padding:12px 18px max(14px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:12px;align-items:flex-end;animation:fade 1s ease both 1.8s;}
+footer{padding:12px 18px max(14px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:12px;align-items:flex-end;animation:fade .5s ease both .3s;}
 .tags b{font-weight:400;background:linear-gradient(110deg,#22d3ee,#e879f9 60%,#ffb627);-webkit-background-clip:text;background-clip:text;color:transparent;}
 .tags{white-space:nowrap;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;line-height:1.9;color:var(--mute);text-transform:uppercase;}
-.note{font-size:10px;line-height:1.7;color:rgba(242,240,235,0.32);text-align:right;max-width:200px;}
+.note{font-size:10px;line-height:1.7;color:rgba(242,240,235,0.62);text-align:right;max-width:200px;}
 @keyframes fade{from{opacity:0}}
 /* 画面の低い端末（iPhone SE など）でも1画面に収める */
 @media (max-height:740px){
@@ -100,7 +107,7 @@ body{word-break:keep-all;overflow-wrap:anywhere;line-break:strict;}
 </head>
 <body>
 <header class="cover">
-  <video id="bg" src="hero-photo.mp4" poster="hero-photo.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <video id="bg" data-src="hero-photo.mp4" poster="hero-photo.jpg" muted loop playsinline aria-hidden="true"></video>
   <div class="tint" aria-hidden="true"></div>
   <div class="masthead"><span>Match Kit</span><b>Junior Football Tools</b><span>Vol.06</span></div>
   <div class="title">
@@ -126,6 +133,9 @@ body{word-break:keep-all;overflow-wrap:anywhere;line-break:strict;}
 // 背景の映像は6アプリを一覧と同じ順に2.4秒ずつ流している。いま映っているアプリの行を光らせ、背景をその色に染める
 (function(){
   var v=document.getElementById('bg'),rows=[].slice.call(document.querySelectorAll('.row')),cur=-1;
+  // 動きを減らす設定では動画を読み込まず、静止画のまま行の自動点灯もしない
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  v.src=v.dataset.src;v.play().catch(function(){});
   function tick(){
     var i=Math.floor(v.currentTime/2.4)%rows.length;
     if(i!==cur){cur=i;rows.forEach(function(r,k){r.classList.toggle('on',k===i)});
